@@ -60,6 +60,8 @@ func (bc BarChart) GetFont() *truetype.Font {
 func (bc BarChart) GetWidth() int {
 	if bc.Width == 0 {
 		return DefaultChartWidth
+	} else if bc.Width == -1 {
+		return bc.autoWidth()
 	}
 	return bc.Width
 }
@@ -513,4 +515,17 @@ func (bc BarChart) GetColorPalette() ColorPalette {
 		return bc.ColorPalette
 	}
 	return AlternateColorPalette
+}
+
+func (bc BarChart) autoWidth() (totalWidth int) {
+
+	totalWidth = 0
+	barWidth := bc.GetBarWidth()
+	barSpacing := bc.GetBarSpacing()
+
+	for _, _ = range bc.Bars {
+		totalWidth += barWidth + barSpacing
+	}
+
+	return
 }

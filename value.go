@@ -34,7 +34,7 @@ func (vs Values) Normalize() []Value {
 	}
 
 	for _, v := range vs {
-		if v.Value > 0 {
+		if v.Value >= 0 {
 			output = append(output, Value{
 				Style: v.Style,
 				Label: v.Label,
